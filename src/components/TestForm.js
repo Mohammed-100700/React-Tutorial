@@ -10,7 +10,7 @@ export default function TestForm(props) {
     }
 
     const handleOnChange = (event) =>{
-        setText(event.target.value)
+        setText(event.target.value);
     }
 
     const handleClear = () => {
@@ -42,10 +42,10 @@ export default function TestForm(props) {
 
     return (
         <>
-        <div className='container'>
-            <h1>{props.heading}</h1>
+        <div className={`container text-${props.mode === 'light' ? 'dark' : 'light'}`}>
+            <h1 className={`text-${props.mode === 'light' ? 'dark' : 'light'}`}>{props.heading}</h1>
             <div className="mb-3">
-                <textarea className="form-control" value={text} onChange={handleOnChange} id="myBox" rows="10"></textarea>
+                <textarea className={`form-control text-${props.mode === "light" ? "dark" : "light"} bg-${props.mode === "dark" ? "dark" : "light"}`} value={text} onChange={handleOnChange} id="myBox" rows="10"></textarea>
             </div>
             <button className="btn btn-dark" onClick={handleUpClick}>Convert to Uppercase</button>
             <button className="btn btn-dark mx-3" onClick={handleLoClick}>Convert to Lowercase</button>
@@ -54,12 +54,12 @@ export default function TestForm(props) {
             <button className="btn btn-danger mx-3" onClick={alternateCasing}>Alternate first letter</button>
         </div>
 
-        <div className="container my-3">
+        <div className={`container my-3 text-${props.mode === 'light' ? 'dark' : 'light'}`} >
             <h2>Your text summary</h2>
             <p>{text.split(" ").length} words and {text.length} characters</p>
             <p>{0.008 * text.split(" ").length} Minutes read</p>
             <h2>Preview</h2>
-            <p>{text}</p>
+            <p>{text.length>0?text : "Write something"}</p>
         </div>
         </>
     )
