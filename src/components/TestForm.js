@@ -26,6 +26,19 @@ export default function TestForm(props) {
         setText(newText);
     }
 
+    const handleCapitalizedFirstLetter = () => {
+        let newText = text.charAt(0).toUpperCase() + text.slice(1);
+        setText(newText);
+    }
+
+    const alternateCasing = () => {
+        const alternatedText = text
+        .split('')
+        .map((char, index) => (index % 2 == 0 ? char.toUpperCase() : char.toLowerCase()))
+        .join("");
+        setText(alternatedText);     
+      };
+
 
     return (
         <>
@@ -35,8 +48,10 @@ export default function TestForm(props) {
                 <textarea className="form-control" value={text} onChange={handleOnChange} id="myBox" rows="10"></textarea>
             </div>
             <button className="btn btn-dark" onClick={handleUpClick}>Convert to Uppercase</button>
-            <button className="btn btn-dark mx-3" onClick={handleLoClick}>Convert to Uppercase</button>
-            <button className="btn btn-danger" onClick={handleClear}>Clear</button>
+            <button className="btn btn-dark mx-3" onClick={handleLoClick}>Convert to Lowercase</button>
+            <button className="btn btn-danger mx-3" onClick={handleClear}>Clear</button>
+            <button className="btn btn-danger mx-3" onClick={handleCapitalizedFirstLetter}>Capitalized first letter</button>
+            <button className="btn btn-danger mx-3" onClick={alternateCasing}>Alternate first letter</button>
         </div>
 
         <div className="container my-3">
